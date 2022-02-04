@@ -83,6 +83,7 @@ const Question = () => {
                   key={item.id} 
                   data={item}
                   handleChangeAns={handleChangeAns}
+                  ans={answer}
                    />
                 )
               }):''

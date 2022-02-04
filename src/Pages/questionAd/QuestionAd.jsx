@@ -21,6 +21,10 @@ const QuestionAd = () => {
    
     const totalPages=questionAd.questionAd?questionAd.questionAd.totalPages:1
     const [questionId,setQuestionId]=useState('')
+    const [questionUpdate,setQuestionUpdate]=useState('')
+    const handleQuestionUpdate=(id)=>{
+        setQuestionUpdate(id)
+    }
     const handleChangeQuestionId=(id)=>{
         setQuestionId(id)
     }
@@ -62,7 +66,9 @@ const QuestionAd = () => {
                         key={item.id} 
                         token={admin&&token?token:''} 
                         questionId={questionId}
+                        questionUpdate={questionUpdate}
                         handleChangeQuestionId={handleChangeQuestionId}
+                        handleQuestionUpdate={handleQuestionUpdate}
                     />
                 )
             }):''

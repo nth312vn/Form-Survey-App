@@ -3,33 +3,51 @@ import { useState } from 'react';
 import './QuestionItem.css'
 const QuestionItem = (props) => {
     const data=props.data
-    
-    const [answer,setAnswer]=useState(null)
+    const ans=props.ans
+    const findId=()=>{
+      if (ans){
+        const index=ans.findIndex((item)=>item.id===data.id)
+        if (index===-1){
+         
+          return ''
+        }
+        console.log(index)
+        return ans[index].correctanswer
+      }
+      return ''
+
+    }
+    const answer=findId()
+   
+  //  const [answer,setAnswer]=useState(()=>findId())
     const handleChangeAns=(e,id)=>{
-      setAnswer(e.target.value)
+      // setAnswer(e.target.value)
       props.handleChangeAns(e.target.name,e.target.value,id)
     }
-    
+   const handleChange=(e,id)=>{
+      // setAnswer(e.target.value)
+      props.handleChangeAns(e.target.name,e.target.value,id)
+   }
   return (
       <div className='question-item-container'>
           <h2>{data.question}</h2>
-          <div className='group' onChange={(e)=>handleChangeAns(e,data.id)}>
+          <div className='group' >
 
             <div className='input-group' >
-              <input type="radio" ckecked={Boolean(answer===data.answer1).toString()} name={data.question} value={data.answer1}  />
-              <label htmlFor={data.answer1}>{data.answer1}</label>
+              <input type="radio" checked={answer===data.answer1} onChange={(e)=>handleChange(e,data.id)} name={data.id} value={data.answer1}  />
+              <label htmlFor={data.id}>{data.answer1}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" ckecked={Boolean(answer===data.answer2).toString()} name={data.question} value={data.answer2}  />
-              <label htmlFor={data.answer2}>{data.answer2}</label>
+              <input type="radio" checked={answer===data.answer2} name={data.id}  onChange={(e)=>handleChange(e,data.id)} value={data.answer2}  />
+              <label htmlFor={data.id}>{data.answer2}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" ckecked={Boolean(answer===data.answer3).toString()} name={data.question} value={data.answer3}  />
-              <label htmlFor={data.answer3}>{data.answer3}</label>
+              <input type="radio" checked={answer===data.answer3} name={data.id} onChange={(e)=>handleChange(e,data.id)} value={data.answer3}  />
+              <label htmlFor={data.id}>{data.answer3}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" ckecked={Boolean(answer===data.answer4).toString()} name={data.question} value={data.answer4}  />
-              <label htmlFor={data.answer4}>{data.answer4}</label>
+              <input type="radio" checked={answer===data.answer4} name={data.id} onChange={(e)=>handleChange(e,data.id)} value={data.answer4}  />
+              <label htmlFor={data.id}>{data.answer4}</label>
             </div>
           </div>
       </div>
