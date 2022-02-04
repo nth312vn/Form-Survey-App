@@ -10,7 +10,7 @@ const authReducer=(state=intialState,action)=>{
             
                 const newState={...state};
                 newState.request=true
-                console.log(newState)
+                
 
                 return newState
             
@@ -20,7 +20,7 @@ const authReducer=(state=intialState,action)=>{
                 newState.request=false
                 newState.error=false
                 newState.currentUser=action.payload
-                console.log(newState)
+                
                 return newState
             }
             case type.LOGIN_ERROR:
@@ -29,7 +29,7 @@ const authReducer=(state=intialState,action)=>{
                     
                 newState.error=true
                 newState.request=false
-                console.log(action.payload)
+                
                 return newState
                 }
         default:

@@ -16,12 +16,12 @@ const getQuestionErr=()=>{
         type:type.REGISTER_ERR
     }
 }
-const getQuestion=(token)=>{
+const getQuestion=(token,param)=>{
     return (dispatch)=>{
         const config={Authorization: `Bearer ${token}`}
         
         dispatch(getQuestionRequest())
-        axios.get('https://fwaec-survey.herokuapp.com/v1/questions/',{headers:config})
+        axios.get(`https://fwaec-survey.herokuapp.com/v1/questions/?page=${param}`,{headers:config})
         .then((res)=>{
             console.log(res.data)
             dispatch(getQuestionSucces(res.data))

@@ -1,0 +1,23 @@
+.question-container {
+  margin: 100px auto 0px;
+  width: 800px;
+  background-color: #ccc;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  height: 50px;
+  box-sizing: border-box;
+}
+.btn-container button {
+  margin: 0px;
+  padding: 5px 10px;
+}
+.btn-container span {
+  margin: 0 5px;
+}

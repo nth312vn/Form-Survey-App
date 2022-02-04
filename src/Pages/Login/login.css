@@ -14,7 +14,7 @@
   font-weight: 700;
   font-size: 1.5rem;
 }
-form {
+.login-container form {
   display: flex;
   margin-top: 1rem;
   font-size: 0.85rem;
@@ -24,7 +24,7 @@ form {
   justify-content: flex-start;
   align-items: flex-start;
 }
-input {
+.login-container input {
   border: none;
   padding: 0.35rem;
   font-family: "Inter", sans-serif;
@@ -32,7 +32,7 @@ input {
   border-radius: 4px;
   width: 100%;
 }
-button {
+.login-container button {
   cursor: pointer;
   border: none;
   align-self: center;

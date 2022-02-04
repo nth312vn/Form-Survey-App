@@ -15,7 +15,7 @@ const Login = () => {
     setUserName(value)
     
   }
-
+  
 
   const handleChangePassWord=(e)=>{
     const {value}=e.target;
@@ -30,8 +30,10 @@ const Login = () => {
       username:userName,
       password:passWord
     }
-    
-    dispatch(loginUser(user,navigate))
+    if (userName&&passWord){
+
+      dispatch(loginUser(user,navigate))
+    }
     
   }
   return (
