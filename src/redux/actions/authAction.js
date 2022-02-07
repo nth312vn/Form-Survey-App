@@ -5,7 +5,7 @@ const loginStart=()=>{
         type:'LOGIN_START',
     }
 }
-const loginSuccess=(data)=>{
+export const loginSuccess=(data)=>{
     return{
         type:type.LOGIN_SUCCESS,
         payload:data
@@ -29,6 +29,12 @@ const loginUser=(user,navigate)=>{
             
         })
         .catch((err)=>dispatch(loginErr(err)))
+    }
+}
+export const logout=()=>{
+    return{
+
+        type:'LOG_OUT'
     }
 }
 export default loginUser

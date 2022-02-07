@@ -20,7 +20,7 @@ const authReducer=(state=intialState,action)=>{
                 newState.request=false
                 newState.error=false
                 newState.currentUser=action.payload
-                
+                console.log(newState)
                 return newState
             }
             case type.LOGIN_ERROR:
@@ -31,6 +31,15 @@ const authReducer=(state=intialState,action)=>{
                 newState.request=false
                 
                 return newState
+                }
+            case 'LOG_OUT':
+                {
+                    const newState={...state}
+                    newState.currentUser=null
+                    newState.request=false
+                    newState.error=false
+                    console.log(newState)
+                    return newState
                 }
         default:
             return state

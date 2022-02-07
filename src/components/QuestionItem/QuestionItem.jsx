@@ -24,9 +24,9 @@ const QuestionItem = (props) => {
       // setAnswer(e.target.value)
       props.handleChangeAns(e.target.name,e.target.value,id)
     }
-   const handleChange=(e,id)=>{
+   const handleChange=(e,id,question)=>{
       // setAnswer(e.target.value)
-      props.handleChangeAns(e.target.name,e.target.value,id)
+      props.handleChangeAns(question,e.target.value,id)
    }
   return (
       <div className='question-item-container'>
@@ -34,19 +34,19 @@ const QuestionItem = (props) => {
           <div className='group' >
 
             <div className='input-group' >
-              <input type="radio" checked={answer===data.answer1} onChange={(e)=>handleChange(e,data.id)} name={data.id} value={data.answer1}  />
+              <input type="radio" checked={answer===data.answer1} onChange={(e)=>handleChange(e,data.id,data.question)} name={data.id} value={data.answer1}  />
               <label htmlFor={data.id}>{data.answer1}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" checked={answer===data.answer2} name={data.id}  onChange={(e)=>handleChange(e,data.id)} value={data.answer2}  />
+              <input type="radio" checked={answer===data.answer2} name={data.id}  onChange={(e)=>handleChange(e,data.id,data.question)} value={data.answer2}  />
               <label htmlFor={data.id}>{data.answer2}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" checked={answer===data.answer3} name={data.id} onChange={(e)=>handleChange(e,data.id)} value={data.answer3}  />
+              <input type="radio" checked={answer===data.answer3} name={data.id} onChange={(e)=>handleChange(e,data.id,data.question)} value={data.answer3}  />
               <label htmlFor={data.id}>{data.answer3}</label>
             </div>
             <div className='input-group'>
-              <input type="radio" checked={answer===data.answer4} name={data.id} onChange={(e)=>handleChange(e,data.id)} value={data.answer4}  />
+              <input type="radio" checked={answer===data.answer4} name={data.id} onChange={(e)=>handleChange(e,data.id,data.question)} value={data.answer4}  />
               <label htmlFor={data.id}>{data.answer4}</label>
             </div>
           </div>

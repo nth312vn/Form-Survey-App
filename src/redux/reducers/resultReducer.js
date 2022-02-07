@@ -4,7 +4,7 @@ const resultReducer=(state=initialState,action)=>{
     switch(action.type){
         case 'SUBMIT_RESULT':
             {
-                const newState=[...state,...action.payload]
+                const newState=[...action.payload]
                 console.log(newState)
                 return newState
             }

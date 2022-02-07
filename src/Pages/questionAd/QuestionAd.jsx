@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import AddQuestion from '../../components/AddQuestion/AddQuestion';
 import QuestionAdItem from '../../components/QuestionAdItem/QuestionAdItem';
 import { getQuesAd } from '../../redux/actions/questionAdAction';
+import Nav from './../../components/Nav/Nav'
 
+import './QuestionAd.css'
 const QuestionAd = () => {
     const [toggle,setToggle]=useState(false)
     const [page,setPage]=useState(1)
@@ -12,12 +15,12 @@ const QuestionAd = () => {
         setToggle(!toggle)
     }
     const admin=useSelector((state)=>state.authReducer.currentUser)
-    
+    const navigate=useNavigate()
     const token=admin?admin.tokens.access.token:''
     
     const dispatch=useDispatch()
     const questionAd=useSelector((state)=>state.questionAdReducer)
-    console.log(questionAd)
+    
    
     const totalPages=questionAd.questionAd?questionAd.questionAd.totalPages:1
     const [questionId,setQuestionId]=useState('')
@@ -29,10 +32,15 @@ const QuestionAd = () => {
         setQuestionId(id)
     }
     useEffect(()=>{
+        if (!token){
+            navigate('/login')
+        }
+    },[])
+    useEffect(()=>{
         if (admin&&token){
             dispatch(getQuesAd(token,page))
         }
-    },[admin,dispatch,token,page,questionId])
+    },[admin,dispatch,token,page,questionId,questionUpdate])
     const handlePrev=()=>{
         if (page<=1){
             setPage(1)
@@ -49,6 +57,9 @@ const QuestionAd = () => {
     }
   return (
       <div>
+          <Nav/>
+          <div className='question-container'>
+
           <div className='Add-question'>
               <AddQuestion 
                 token={admin&&token?token:''} 
@@ -78,6 +89,7 @@ const QuestionAd = () => {
             <span>{`${page}/${totalPages}`}</span>
             <button disabled={page>=totalPages} onClick={()=>handleNext()}>Next</button>
         </div>
+          </div>
       </div>
   )
 };
