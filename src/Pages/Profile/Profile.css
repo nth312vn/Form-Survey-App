@@ -2,3 +2,8 @@
   margin: 60px auto 0;
   width: 800px;
 }
+.img-avatar {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}

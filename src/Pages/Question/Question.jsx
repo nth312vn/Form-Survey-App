@@ -9,6 +9,7 @@ import QuestionItem from '../../components/QuestionItem/QuestionItem';
 import getQuestion from '../../redux/actions/getQuestionAct';
 import { resultAct } from '../../redux/actions/resultAction';
 import { useNavigate } from 'react-router-dom';
+import { createAxios } from '../../utils/axiosJwt';
 
 const Question = () => {
   const user = useSelector((state) => state.authReducer)
@@ -19,6 +20,7 @@ const Question = () => {
   const getQuesStore = useSelector(state => state.getQuestionReducer.question)
   const totalPages = getQuesStore ? getQuesStore.totalPages : 1
   const [answer, setAnswer] = useState([])
+  const axiosJwt=createAxios(user,dispatch,token)
   const handleChangeAns = (question, ans, id) => {
     const output = {
       id: id,
@@ -56,7 +58,7 @@ const Question = () => {
       navigate('/login')
     }
     if (user.currentUser && token) {
-      dispatch(getQuestion(token, page))
+      dispatch(getQuestion(token, page,axiosJwt))
     }
 
   }, [page, token])

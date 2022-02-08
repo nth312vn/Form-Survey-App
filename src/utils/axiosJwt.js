@@ -8,13 +8,19 @@ export const createAxios =(user,dispatch,token)=>{
 
     axiosJwt.interceptors.request.use(
     (res)=>{
+       
         const date=new Date()
         const decodeToken=jwt_decode(token)
-        console.log(decodeToken)
-        if(decodeToken.exp<date.getTime()/1000){
+        
+        if(decodeToken.exp<date.getTime()/1000&&user){
             const newUser=_.cloneDeep(user)
-            newUser.tokens.access.token=newUser.tokens.refresh.token
-            dispatch(loginSuccess(newUser))
+            const refreshToken=user.tokens.refresh.token
+            axios.post('https://fwaec-survey.herokuapp.com/v1/auth/refresh-tokens',refreshToken)
+            .then((res)=>{
+                newUser.tokens=res.data
+                dispatch(loginSuccess(newUser))
+            })
+           
         }
         return res
     }

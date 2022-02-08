@@ -23,12 +23,12 @@ export const changeReCallApi=(data)=>{
         payload:data
     }
 }
-export const getQuesAd=(token,page)=>{
+export const getQuesAd=(token,page,axiosJwt)=>{
     return (dispatch)=>{
         const config={Authorization: `Bearer ${token}`}
         dispatch(getQuesAdStart())
         
-        axios.get(`https://fwaec-survey.herokuapp.com/v1/questions/edit/?page=${page}`,{headers:config})
+        axiosJwt.get(`https://fwaec-survey.herokuapp.com/v1/questions/edit/?page=${page}`,{headers:config})
         .then((res)=>{
             dispatch(getQuesAdSucces(res.data))
            
