@@ -1,5 +1,5 @@
 # Project Form Survey App
--Các chức năng chính: 
+# Các chức năng chính: 
 + Đăng kí/đăng nhập 
 +  Điều hướng trang 
 + Xử lý trả lời câu hỏi,phân trang câu hỏi 
