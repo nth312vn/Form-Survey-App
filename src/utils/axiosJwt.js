@@ -12,12 +12,16 @@ export const createAxios =(user,dispatch,token)=>{
         const date=new Date()
         const decodeToken=jwt_decode(token)
         
-        if(decodeToken.exp<date.getTime()/1000&&user){
+        if((decodeToken.exp<=date.getTime()/1000)&&user){
             const newUser=_.cloneDeep(user)
             const refreshToken=user.tokens.refresh.token
-            axios.post('https://fwaec-survey.herokuapp.com/v1/auth/refresh-tokens',refreshToken)
+            const tokenSend={
+                refreshToken:refreshToken
+            }
+            axios.post('https://fwaec-survey.herokuapp.com/v1/auth/refresh-tokens',tokenSend)
             .then((res)=>{
                 newUser.tokens=res.data
+            
                 dispatch(loginSuccess(newUser))
             })
            

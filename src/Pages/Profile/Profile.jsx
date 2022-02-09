@@ -7,12 +7,14 @@ import { useState } from "react";
 import "./Profile.css";
 import { createAxios } from "../../utils/axiosJwt";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const user = useSelector((state) => state.authReducer.currentUser);
   const token = user ? user.tokens.access.token : "";
   const ref = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const id = user ? user.user.id : "";
   const [toggle, setToggle] = useState(false);
 
@@ -21,6 +23,9 @@ const Profile = () => {
   const axiosJwt = createAxios(user, dispatch, token);
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
     if (user && token && id) {
       const config = { Authorization: `Bearer ${token}` };
       axiosJwt
